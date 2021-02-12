@@ -1,0 +1,5 @@
+
+local userdata_1 = CFrame.new(-1225.48828, 12.8364725, 678.035767, -0.372106075, -0.223128334, 0.900972188, -0, 0.970676303, 0.240390733, -0.928190231, 0.0894508511, -0.361194521);
+local userdata_2 = Vector3.new(-1225.48828, 12.8364725, 678.035767);
+local Target = game:GetService("Workspace").lIllllIllllIlIlllIlI.AS.Skill2.RemoteEvent;
+Target:FireServer(userdata_1, userdata_2);
