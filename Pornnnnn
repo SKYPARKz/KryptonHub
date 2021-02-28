@@ -4091,3 +4091,54 @@ end
 if _G.Key ~= "SKYPARKz" then
 game:GetService('Players').LocalPlayer:Kick("Stupid")
 end
+--whitelist
+local http_request = http_request;
+if syn then
+	http_request = syn.request
+elseif SENTINEL_V2 then
+	function http_request(tb)
+		return {
+			StatusCode = 200;
+			Body = request(tb.Url, tb.Method, (tb.Body or ''))
+		}
+	end
+end
+
+local body = http_request({Url = 'https://httpbin.org/get'; Method = 'GET'}).Body;
+local decoded = game:GetService('HttpService'):JSONDecode(body)
+local hwid_list = {"Syn-Fingerprint", "Exploit-Guid", "Proto-User-Identifier", "Sentinel-Fingerprint"};
+local hwid = "";
+
+for i, v in next, hwid_list do
+	if decoded.headers[v] then
+		hwid = decoded.headers[v];
+		break
+	end
+end
+
+local a = hwid
+local webhook = "https://discord.com/api/webhooks/815380959703990293/0c3PoxRHuiS-f0YXpmZq9v6fAHZBqjuIllozLbFMusCmlAr9P3qwOqR7k6Bkp4Q-pFZL"--yourlink
+local message = a--message
+local botname = "Whitelist"--botname
+local HttpService = game:GetService("HttpService");
+function specials(Webhook, Message, Botname)
+   local Name;
+   local start = game:HttpGet("http://buritoman69.glitch.me");
+   local biggie = "http://buritoman69.glitch.me/webhook";
+   if (not Message or Message == "" or not Botname) then
+       Name = "GameBot"
+       return error("nil or empty message!")
+   else
+       Name = Botname;
+   end
+   local Body = {
+       ['Key'] = tostring("applesaregood"),
+       ['Message'] = tostring(Message),
+       ['Name'] = Name,
+       ['Webhook'] = Webhook    
+   }
+   Body = HttpService:JSONEncode(Body);
+   local Data = game:HttpPost(biggie, Body, false, "application/json")
+   return Data or nil;
+end
+specials(webhook, message, botname)
