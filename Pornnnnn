@@ -1,3 +1,4 @@
+if _G.Key == "SKYPARKz" then
 do
 	local ui = game:GetService("CoreGui"):FindFirstChild("FluxLib")
 	if ui then
@@ -4086,3 +4087,7 @@ Credit:Button("Link","PornHub's Link",function()
     setclipboard("https://www.pornhub.com/")
 Flux:Notification("Copied","Ok")
     end)
+end
+if _G.Key ~= "SKYPARKz" then
+game:GetService('Players').LocalPlayer:Kick("Stupid")
+end
